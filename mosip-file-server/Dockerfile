@@ -77,7 +77,6 @@ ENV base_path_apk=/home/${container_user}/mosip-file-server/files/mobileapp
 
 RUN chown -R ${container_user}:${container_user} /home/${container_user}
 
-RUN echo "https://github.com/mosip/inji/suites/6943095498/artifacts/270563646" > $base_path_apk/index.html
 
 # select container user for all tasks
 USER ${container_user_uid}:${container_user_gid}
