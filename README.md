@@ -1,5 +1,4 @@
 # mosip-file-server
-
 mosip-file-server is used to share .well-known URIs related to DIDs, Hubs, and Agents. with MOSIP partners, open-source communities, etc...
 ## .well-known
 * For v2, provide the JSON files under `https://github.com/mosip/mosip-infra/tree/{branch-name}/deployment/sandbox-v2/roles/mosip-file-server/templates` in [mosip-infra](https://github.com/mosip/mosip-infra.git).
