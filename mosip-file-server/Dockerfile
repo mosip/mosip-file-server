@@ -94,11 +94,13 @@ RUN chmod +x *.sh *.py
 
 ENV base_path_mosipvc=/home/${container_user}/mosip-file-server/.well-known/mosipvc/
 
-ENV base_path_apk=/home/${container_user}/mosip-file-server/files/mobileapp/
+ENV base_path_inji_model=/home/${container_user}/mosip-file-server/files/inji/
 
 ENV base_path_mosip_certs=/home/${container_user}/mosip-file-server/mosip-certs/
 
-RUN cd /home/${container_user} && mkdir -p ${base_path_mosipvc} ${base_path_apk} ${base_path_mosip_certs}
+RUN cd /home/${container_user} && mkdir -p ${base_path_mosipvc} ${base_path_inji_model} ${base_path_mosip_certs}
+
+ADD ./inji-model/* ${base_path_inji_model}
 
 RUN chown -R ${container_user}:${container_user} /home/${container_user}
 
