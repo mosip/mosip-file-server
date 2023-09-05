@@ -66,9 +66,11 @@ ENV spring_config_url_env=${spring_config_url}
 
 ENV active_profile_env=${active_profile_env}
 
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+
 # install packages and create user
 RUN apt-get -y update \
-&& apt-get install -y unzip zip curl git wget jq npm python python3-pip vim \
+&& apt-get install -y unzip zip curl git wget jq npm python3 python3-pip vim \
 && pip3 install 'cryptography==3.4.8' 'jwcrypto==1.4.2' \
 && groupadd -g ${container_user_gid} ${container_user_group} \
 && useradd -u ${container_user_uid} -g ${container_user_group} -s /bin/sh -m ${container_user} \

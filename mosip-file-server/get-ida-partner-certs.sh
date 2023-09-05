@@ -11,7 +11,7 @@ echo "IDA INTERNALURL URL : $IDA_INTERNAL_URL"
 
 #echo "* Request for authorization"
 curl -s -D - -o /dev/null -X "POST" \
-  "$AUTHMANAGER_URL/v1/authmanager/authenticate/clientidsecretkey" \
+  "$AUTHMANAGER_URL/authenticate/clientidsecretkey" \
   -H "accept: */*" \
   -H "Content-Type: application/json" \
   -d '{
@@ -41,7 +41,7 @@ echo -e "\nGot Authorization token from authmanager"
 curl -X "GET" \
   -H "Accept: application/json" \
   --cookie "Authorization=$TOKEN" \
-  "$IDA_INTERNAL_URL/idauthentication/v1/internal/getCertificate?applicationId=IDA&referenceId=PARTNER" > ida_result.txt
+  "$IDA_INTERNAL_URL/getCertificate?applicationId=IDA&referenceId=PARTNER" > ida_result.txt
 
 RESPONSE_COUNT=$( cat ida_result.txt | jq .response )
 if [[ -z $RESPONSE_COUNT ]]; then
