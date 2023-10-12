@@ -9,6 +9,13 @@ if [[ $? -gt 0 ]]; then
   exit 1;
 fi
 
+/home/mosip/get-ida-vc-certs.sh
+
+if [[ $? -gt 0 ]]; then
+  echo "IDA's VC PUBLIC KEY Generation failed; EXITING";
+  exit 1;
+fi
+
 /home/mosip/get-ida-partner-certs.sh;
 
 if [[ $? -gt 0 ]]; then
