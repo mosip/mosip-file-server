@@ -98,13 +98,13 @@ ENV base_path_mosipvc=/home/${container_user}/mosip-file-server/.well-known/mosi
 
 ENV base_path_inji_model=/home/${container_user}/mosip-file-server/files/inji/
 
-ENV base_path_inji_model=/home/${container_user}/mosip-file-server/files/
-
 ENV base_path_mosip_certs=/home/${container_user}/mosip-file-server/mosip-certs/
 
 RUN cd /home/${container_user} && mkdir -p ${base_path_mosipvc} ${base_path_inji_model} ${base_path_mosip_certs}
 
 ADD ./inji-model ${base_path_inji_model}
+
+ADD ./files  /home/${container_user}/mosip-file-server/files/
 
 RUN chown -R ${container_user}:${container_user} /home/${container_user}
 
