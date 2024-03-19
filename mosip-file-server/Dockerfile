@@ -68,8 +68,7 @@ RUN apt-get -y update \
 && mkdir -p /var/run/nginx /var/tmp/nginx \
 && chown -R ${container_user}:${container_user} /home/${container_user} /usr/share/nginx /var/run/nginx /var/tmp/nginx \
 && cd /home/${container_user} && mkdir -p ${base_path_mosipvc} ${base_path_inji_model} ${base_path_mosip_certs} \
-&& chmod +x *.sh *.py \
-&& chown -R ${container_user}:${container_user} /home/${container_user}
+&& chmod +x *.sh *.py 
 
 # select container user for all tasks
 USER ${container_user_uid}:${container_user_gid}
