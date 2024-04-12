@@ -1,23 +1,7 @@
 # base image
 FROM nginx
 
-ARG SOURCE
-ARG COMMIT_HASH
-ARG COMMIT_ID
-ARG BUILD_TIME
-LABEL source=${SOURCE}
-LABEL commit_hash=${COMMIT_HASH}
-LABEL commit_id=${COMMIT_ID}
-LABEL build_time=${BUILD_TIME}
-
-# can be passed during Docker build as build time environment for github branch to pickup configuration from.
-ARG container_user=mosip
-ARG container_user_group=mosip
-ARG container_user_uid=1001
-ARG container_user_gid=1001
-
 # can be passed during Docker build as build time environment for artifactory URL
-
 ARG AUTHMANAGER_URL
 ARG KEYMANAGER_URL
 ARG IDA_INTERNAL_URL
@@ -28,6 +12,18 @@ ARG spring_config_url
 ARG spring_config_label
 ARG active_profile_env
 ARG version
+
+# can be passed during Docker build as build time environment for github branch to pickup configuration from.
+ARG container_user=mosip
+ARG container_user_group=mosip
+ARG container_user_uid=1001
+ARG container_user_gid=1001
+
+# can be passed during Docker build as build time environment for label related addition to docker.
+ARG SOURCE
+ARG COMMIT_HASH
+ARG COMMIT_ID
+ARG BUILD_TIME
 
 ENV app_version=${version}
 # environment variable to pass artifactory url, at docker runtime
@@ -42,6 +38,12 @@ ENV spring_config_label_env=${spring_config_label}
 ENV spring_config_url_env=${spring_config_url}
 ENV active_profile_env=${active_profile_env}
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
+
+# can be passed during Docker build as build time environment for label.
+LABEL source=${SOURCE}
+LABEL commit_hash=${COMMIT_HASH}
+LABEL commit_id=${COMMIT_ID}
+LABEL build_time=${BUILD_TIME}
 
 # set working directory for the user
 WORKDIR /home/${container_user}
