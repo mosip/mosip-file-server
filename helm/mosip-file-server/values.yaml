@@ -238,6 +238,7 @@ envVarsCM:
 ##
 envVarsSecret:
   - keycloak-client-secrets
+
 ## Additional environment variables to set
 ## Example:
 ## extraEnvVars:
