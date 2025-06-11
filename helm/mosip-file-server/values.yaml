@@ -74,8 +74,6 @@ mosipfileserver:
     IDA_INTERNAL_URL: http://ida-internal.ida/idauthentication/v1/internal
     KEYCLOAK_CLIENT_ID: mosip-regproc-client
     AUTH_APP_ID: regproc
-  secrets:
-    KEYCLOAK_CLIENT_SECRET: ''
 
 ## Port on which this particular spring service module is running.
 containerPort: 8080
@@ -261,7 +259,7 @@ envVarsCM:
 ## Secret with environment variables
 ##
 envVarsSecret:
-  - keycloak-client-secret
+  - keycloak-client-secrets
 
 ## Additional environment variables to set
 ## Example:
