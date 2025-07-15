@@ -30,5 +30,12 @@ if [[ $? -gt 0 ]]; then
   exit 1;
 fi
 
+/home/mosip/get-fir-certs.sh;
+
+if [[ $? -gt 0 ]]; then
+  echo "jwks generation for IDA FIR certificates failed; EXITING";
+  exit 1;
+fi
+
 echo 'starting nginx'&& nginx;
 sleep infinity;
