@@ -30,7 +30,7 @@ if [[ $? -gt 0 ]]; then
   exit 1;
 fi
 
-/home/mosip/get-fir-certs.sh;
+/home/mosip/get-ida-fir-certs.sh;
 
 if [[ $? -gt 0 ]]; then
   echo "jwks generation for IDA FIR certificates failed; EXITING";
