@@ -51,8 +51,8 @@ service:
 
 image:
   registry: docker.io
-  repository: mosipid/mosip-file-server
-  tag: 1.2.0.1
+  repository: mosipqa/mosip-file-server
+  tag: 1.2.0.x
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -74,8 +74,6 @@ mosipfileserver:
     IDA_INTERNAL_URL: http://ida-internal.ida/idauthentication/v1/internal
     KEYCLOAK_CLIENT_ID: mosip-regproc-client
     AUTH_APP_ID: regproc
-  secrets:
-    KEYCLOAK_CLIENT_SECRET: ''
 
 ## Port on which this particular spring service module is running.
 containerPort: 8080
@@ -261,7 +259,7 @@ envVarsCM:
 ## Secret with environment variables
 ##
 envVarsSecret:
-  - keycloak-client-secret
+  - keycloak-client-secrets
 
 ## Additional environment variables to set
 ## Example:
