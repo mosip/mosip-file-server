@@ -4,7 +4,7 @@ import cryptography
 import sys
 
 if __name__ == "__main__":
-    
+
     arg_len = len(sys.argv)
     print(f"Arguments count: {arg_len}")
     if arg_len < 2:
