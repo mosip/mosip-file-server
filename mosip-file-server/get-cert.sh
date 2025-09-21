@@ -82,5 +82,4 @@ for file in mosip-context.json controller.json; do
 done
 
 
-
 exec "$@"
