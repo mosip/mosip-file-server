@@ -33,6 +33,7 @@ spec:
       {{- if .Values.hostAliases }}
       hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.hostAliases "context" $) | nindent 8 }}
       {{- end }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | default 60 }}      
       {{- if .Values.affinity }}
       affinity: {{- include "common.tplvalues.render" ( dict "value" .Values.affinity "context" $) | nindent 8 }}
       {{- else }}
@@ -93,6 +94,12 @@ spec:
               value: {{ .Values.mosipfileserver.healthCheckUrl }}
             - name: host
               value: {{ .Values.mosipfileserver.host }}
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-secrets
+                  key: mosip_regproc_client_secret
+            
             {{- if .Values.extraEnvVars }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
