@@ -1,15 +1,15 @@
 #!/bin/bash
-# Copy configmaps from other namespaces
+# Copy secrets from other namespaces
 # DST_NS: Destination namespace
 
-function copying_cm() {
+function copying_secrets() {
   UTIL_URL=https://raw.githubusercontent.com/mosip/mosip-infra/refs/heads/master/deployment/v3/utils/copy_cm_func.sh
   COPY_UTIL=./copy_cm_func.sh
   DST_NS=mosip-file-server
 
   wget -q $UTIL_URL -O copy_cm_func.sh && chmod +x copy_cm_func.sh
 
-  $COPY_UTIL configmap config-server-share config-server $DST_NS
+  $COPY_UTIL secret keycloak-client-secrets keycloak $DST_NS
   return 0
 }
 
@@ -19,4 +19,4 @@ set -o errexit   ## set -e : exit the script if any statement returns a non-true
 set -o nounset   ## set -u : exit the script if you try to use an uninitialised variable
 set -o errtrace  # trace ERR through 'time command' and other functions
 set -o pipefail  # trace ERR through pipes
-copying_cm   # calling function
+copying_secrets   # calling function
