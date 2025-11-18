@@ -5,7 +5,7 @@ date=$(date --utc +%FT%T.%3NZ)
 
 rm -rf ida_fir_temp.txt ida_fir_result.txt ida_pubkey.pem ida_cert.pem
 
-echo -e "\n Generating JWKS for IDA-FIR certificates (RAW OUTPUT MODE)\n"
+echo -e "\n Generating RAW IDA-FIR certificate JSON (wrapped)\n"
 echo "AUTHMANAGER URL : $AUTHMANAGER_URL"
 echo "IDA INTERNAL URL : $IDA_INTERNAL_URL"
 
@@ -44,7 +44,7 @@ curl -s -X "GET" \
   --cookie "Authorization=$TOKEN" \
   "$IDA_INTERNAL_URL/getAllCertificates?applicationId=IDA&referenceId=IDA-FIR" > ida_fir_result.txt
 
-# Validate JSON structure (just checks if JSON, not formatting)
+# Validate JSON structure
 if ! jq empty ida_fir_result.txt 2>/dev/null; then
   echo "Invalid JSON received from server; EXITING"
   exit 1
@@ -52,14 +52,26 @@ fi
 
 echo -e "\n**************** RAW CERTIFICATE JSON (wrapped) ****************\n"
 
-# PRINT EXACT RESPONSE, UNCHANGED, WITH [] AS WRAPPER
+# Output file path
+OUTPUT_FILE="$base_path_mosip_certs/ida-fir.json"
+
+# Print to console
 echo "["
 cat ida_fir_result.txt
 echo "]"
 
+# Save to file
+{
+  echo "["
+  cat ida_fir_result.txt
+  echo "]"
+} > "$OUTPUT_FILE"
+
+echo -e "\nSaved wrapped JSON to: $OUTPUT_FILE"
 echo -e "\n***************************************************************\n"
+
 echo "Displayed raw certificate JSON successfully"
 
-# cleanup env var as in original script
+# cleanup env var
 echo "MOSIP_REGPROC_CLIENT_SECRET=''" >> ~/.bashrc
 source ~/.bashrc
