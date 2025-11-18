@@ -38,12 +38,6 @@ if [[ $? -gt 0 ]]; then
   exit 1;
 fi
 
-/home/mosip/get-ida-fir-certs-temp.sh;
-
-if [[ $? -gt 0 ]]; then
-  echo "jwks generation for IDA FIR temp certificates failed; EXITING";
-  exit 1;
-fi
 
 echo 'starting nginx'&& nginx;
 sleep infinity;
