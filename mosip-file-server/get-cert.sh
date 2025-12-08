@@ -72,7 +72,7 @@ echo "MOSIP_REGPROC_CLIENT_SECRET=''" >> ~/.bashrc
 source ~/.bashrc
 
 for file in mosip-context.json controller.json; do
-  curl $spring_config_url_env/*/$active_profile_env/$spring_config_label_env/$file > $base_path_mosipvc/$file;
+  curl $spring_config_url_env/application/$active_profile_env/$spring_config_label_env/$file > $base_path_mosipvc/$file;
   if ! [[ -s $base_path_mosipvc/$file ]]; then
     echo "Unable to download \"$base_path_mosipvc/$file\" file from config-server;";
     echo "FILE \"$base_path_mosipvc/$file\" is empty; EXITING";
