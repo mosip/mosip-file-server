@@ -69,7 +69,7 @@ sed -i "s&replace-public-key&$(cat pubkey.pem | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\
 echo "public key creation complete"
 
 for file in ida-controller.json mosip-ida-context.json; do
-  curl $spring_config_url_env/*/$active_profile_env/$spring_config_label_env/$file > $base_path_mosipvc/$file;
+  curl $spring_config_url_env/application/$active_profile_env/$spring_config_label_env/$file > $base_path_mosipvc/$file;
   if ! [[ -s $base_path_mosipvc/$file ]]; then
     echo "Unable to download \"$base_path_mosipvc/$file\" file from config-server;";
     echo "FILE \"$base_path_mosipvc/$file\" is empty; EXITING";
