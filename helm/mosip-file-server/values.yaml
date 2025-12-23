@@ -60,7 +60,7 @@ image:
   #   - myRegistryKeySecretName
 mosipfileserver:
   host: ''
-  mountDir: "/mnt/mosip-file-server" # path inside docker
+  mountDir: "/mnt/mosip-file-server"
   healthCheckUrl: http://localhost:8080/.well-known/
   configmaps:
     AUTHMANAGER_URL: http://authmanager.kernel/v1/authmanager
@@ -405,7 +405,8 @@ istio:
   gateways:
     - istio-system/public
     - istio-system/internal
-  existingGateway: '' ## istio-system/public or istio-system/internal
+  existingGateway: ''
+  ## istio-system/public or istio-system/internal
   # ingressController is only valid if existingGateway is null/empty
   ingressController:
     # for public, istio: ingressgateway && for internal, istio: ingressgateway-internal
